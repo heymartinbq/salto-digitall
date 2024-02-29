@@ -1,0 +1,73 @@
+---
+
+import '../assets/css/style.css'
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="container-full-window salto-digitall">
+            <div class="scene-keynote-container">				
+                <div class="scene-keyword-full-content">
+                    <div class="flex h-[100%]">
+                        <div class="m-auto">
+                            <slot />
+                            <h1 class="hero-text stroke-text text-7xl"><strong>Salto Digit</strong><em class="fw-light fw-italic historical-ligatures">all</em>.</h1>
+                            <p class="text-lg">Marzo 2024, <a href="https://linktr.ee/heymartinbq" title="Social Media" target="_blank">@heymartinbq</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
+
+<style>
+    .container-full-window {  
+        display: grid;
+        background-position: var(--shaking-25y) var(--shaking-25x);
+        grid-template-columns: repeat(16, 1fr); 
+        grid-template-rows: repeat(8, 1fr); 
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        width: 100vw;
+        height: 100vh;
+        grid-template-areas: 
+        ". . . . . . . . . . . . . . . ."
+        ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+        ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+        ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+        ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+        ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+        ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+        ". . . . . . . . . . . . . . . ."; 
+        
+        & .scene-keynote-container {
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            grid-template-rows: repeat(3, 1fr); 
+            gap: 0px 0px; 
+            grid-template-areas: 
+            "scene-keyword-full-content scene-keyword-full-content scene-keyword-full-content scene-keyword-full-content"
+            "scene-keyword-full-content scene-keyword-full-content scene-keyword-full-content scene-keyword-full-content"
+            "scene-keyword-full-content scene-keyword-full-content scene-keyword-full-content scene-keyword-full-content"; 
+            grid-area: scene-keynote-container; 
+            
+            & .scene-keyword-full-content { grid-area: scene-keyword-full-content; }
+        }
+    }
+</style>

@@ -1,0 +1,254 @@
+:root{
+    --golden-ratio: 1.618;
+    --aspect-ratio: 1.5;
+    --moise-in: 1px;
+    --moise-out: 5px;
+    --shaking-25y: .5px;
+    --shaking-50y: -.3px;
+    --shaking-75y: .2px;
+    --shaking-25x: -.5px;
+    --shaking-75x: .3px;
+}
+
+.common-ligatures {
+    font-variant-ligatures: common-ligatures;
+}
+
+.no-common-ligatures {
+    font-variant-ligatures: no-common-ligatures;
+}
+
+.discretionary-ligatures {
+    font-variant-ligatures: discretionary-ligatures;
+}
+
+.no-discretionary-ligatures {
+    font-variant-ligatures: no-discretionary-ligatures;
+}
+
+.historical-ligatures {
+    font-variant-ligatures: historical-ligatures;
+}
+
+.no-historical-ligatures {
+    font-variant-ligatures: no-historical-ligatures;
+}
+
+.contextual {
+    font-variant-ligatures: contextual;
+}
+
+.no-contextual {
+    font-variant-ligatures: no-contextual;
+}
+
+/* BACKGROUNDS */
+
+.salto-digitall {
+    background-image: url(../img/salto-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.immersive-one {
+    background-image: url(../img/imm1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.orange-bg {
+    background-color:hsla(36,95%,55%,1);
+    background-image: radial-gradient(at 3% 96%, hsl(35.78deg 100% 41.81%) 0px, transparent 50%),
+    radial-gradient(at 82% 10%, hsla(37,100%,46%,1) 0px, transparent 50%),
+    radial-gradient(at 99% 89%, hsl(40.76deg 93.8% 51.58%) 0px, transparent 50%),
+    radial-gradient(at 5% 6%, hsl(29.77deg 94.54% 47.84% / 81%) 0px, transparent 50%);
+}
+
+/* /BACKGROUNDS */
+
+/* TEXTURES */
+.noise-overlay-wrapper {
+    /* Overscale to hide animation edges. */
+    height: 100vh;
+    left: 0;
+    /* Play with the blend modes. */
+    mix-blend-mode: color-burn;
+    /* Change the opacity for a stronger/subtler effect. */
+    opacity: 0.15;
+    /* Stop the noise layer from capturing clicks. */
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    transition: 0.01618s all;
+    width: 100vw;
+    background:
+    linear-gradient(135deg, hsl(44, 100%, 58%) 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, hsl(51, 100%, 82%) 25%, transparent 25%) -50px 0,
+    linear-gradient(315deg, hsl(44, 100%, 58%) 25%, transparent 25%),
+    linear-gradient(45deg, hsl(51, 100%, 82%) 25%, transparent 25%);
+    background-size: 6px 6px;
+    background-color: hsl(56, 100%, 60%);
+    filter: saturate(3) blur(0.618px);
+}
+
+.noise-overlay-wrapper + .noise-overlay-wrapper  {
+    mix-blend-mode: luminosity;
+    background-size: 6px 4px;
+    opacity: 0.2;
+    transition: 0.01618s all;
+    background-repeat: repeat-x;
+}
+
+.noise-overlay-wrapper + .noise-overlay-wrapper + .noise-overlay-wrapper {
+    mix-blend-mode: screen;
+    background-size: 6px 2px;
+    background-position: center;
+    opacity: 0.1;
+    transition: 0.005s all;
+    background-repeat: repeat-x;
+} 
+
+#noise-overlay, #hologram-overlay {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.hologram-overlay-wrapper {
+    height: 100vh;
+    left: 0;
+    mix-blend-mode: saturation;
+    opacity: 0.1;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background: radial-gradient(
+    110.35% 80.79% at 6% 103.92%,
+    rgba(240, 151, 36, 1) 0%,
+    rgba(37, 169, 239, 0) 100%
+    ),
+    linear-gradient(
+    169.3deg,
+    rgba(255, 230, 204, 1) 15%,
+    rgba(252, 235, 215, 0) 46%
+    ),
+    radial-gradient(
+    123% 73% at 107% 96%,
+    rgba(255, 253, 177, 1) 20%,
+    rgba(254, 228, 191, 1) 60%,
+    rgba(240, 236, 189, 1) 75%,
+    rgba(255, 172, 38, 0) 100%
+    ),
+    linear-gradient(
+    0deg,
+    rgba(255, 252, 250, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+    );
+    filter: blur(1.618px);
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    animation-name: hologramFluid;
+}
+
+@keyframes hologramFluid {
+    from {
+        background-position: top;
+        background-size: 500% 300%;
+    }
+    
+    to {
+        background-position: bottom;
+        background-size: 500% 1000%;
+    }
+}
+
+.scene-shaking {
+    transform: translate(var(--shaking-25y), var(--noise-out));
+}
+
+.video-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    mix-blend-mode: color-burn;
+    opacity: 0.0618;
+    filter: blur(.3px) invert() hue-rotate(287deg);
+    pointer-events: none;
+}
+
+.video-container video, .scene-keynote-video-background video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+/* /TEXTURES */
+
+/* LAYOUTS */
+
+
+
+
+.container-two-halfs {  
+    background-position: var(--shaking-25y) var(--shaking-25x);
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". . . . . . . . . . . . . . . ."
+    ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+    ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+    ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+    ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+    ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+    ". scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container scene-keynote-container ."
+    ". . . . . . . . . . . . . . . ."; 
+    
+    & .scene-keynote-container {
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr); 
+        grid-template-rows: repeat(3, 1fr); 
+        gap: 0px 0px; 
+        grid-template-areas: 
+        "scene-half-left-conteiner scene-half-left-conteiner scene-half-right-container scene-half-right-container"
+        "scene-half-left-conteiner scene-half-left-conteiner scene-half-right-container scene-half-right-container"
+        "scene-half-left-conteiner scene-half-left-conteiner scene-half-right-container scene-half-right-container"; 
+        grid-area: scene-keynote-container; 
+        
+        & .scene-half-left-conteiner { grid-area: scene-half-left-conteiner; }
+        & .scene-half-right-container { grid-area: scene-half-right-container; }
+    }
+}
+
+/* /LAYOUTS */
+
+/* TEXT UNIQUE */
+
+.hero-text{
+    filter: drop-shadow(0px 0px 17px hsl(47, 100%, 73%)) 
+    drop-shadow(0px 0px 35px hsla(56, 100%, 50%, 0.89)) 
+    drop-shadow(0px 0px 55px hsla(46, 100%, 50%, 0.781)) 
+    blur(.7px);
+    color: hsl(55, 100%, 87%);
+    mix-blend-mode: hard-light;
+    opacity: var(--opacity-light-title);
+}
+
+/* /TEXT UNIQUE*/
